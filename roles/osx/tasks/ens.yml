@@ -1,0 +1,32 @@
+---
+# General
+- homebrew_cask: name={{ item }}
+  with_items:
+  - dropbox
+  # comm
+  - slack
+  - joinme
+  # dev:vm
+  - vagrant
+  - virtualbox
+  # comm
+  # - skype
+  # - hipchat
+  # dev:vm
+  # - otto
+  # - nomad
+
+- homebrew: name={{ item }}
+  with_items:
+  - consul
+  - packer
+  - terraform
+    # - awscli
+
+# - gem: name={{ item }}
+#   with_items:
+#   - puppet
+
+- pip: name={{ item }} executable=/usr/local/bin/pip3.5
+  with_items:
+  - bitbucket-cli

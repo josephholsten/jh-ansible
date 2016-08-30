@@ -1,0 +1,7 @@
+---
+- hosts: workstations
+  remote_user: josephholsten
+  roles:
+    - osx
+  vars:
+    share_dir: "{{ansible_env.HOME}}/Dropbox"

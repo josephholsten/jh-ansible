@@ -1,0 +1,7 @@
+#!/bin/sh
+
+brew cask list | xargs brew cask uninstall
+brew list | xargs brew uninstall --force
+gem list | awk '{print $1}' | gem uninstall
+rm -rf /opt/rubies
+

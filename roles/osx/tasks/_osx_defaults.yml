@@ -1,0 +1,91 @@
+---
+# see ~/.osx — https://mths.be/osx
+
+- name: Display ASCII control characters using caret notation in standard text views
+  # Try e.g. `cd /tmp; unidecode "\x{0000}" > cc.txt; open -e cc.txt`
+  osx_defaults: key=NSTextShowsControlCharacters type=bool value=true
+- name: Check for software updates daily, not just once per week
+  osx_defaults: domain=com.apple.SoftwareUpdate key=ScheduleFrequency type=int value=1
+# Trackpad
+- name: enable tap to click for this user
+  osx_defaults: domain=com.apple.driver.AppleBluetoothMultitouch.trackpad key=Clicking type=bool value=true
+- name: enable tap to click for the login screen
+  osx_defaults: key=com.apple.mouse.tapBehavior type=int value=1
+# Keyboard
+- name: Set a blazingly fast keyboard repeat rate
+  osx_defaults: key=KeyRepeat type=int value=0
+# set caps-lock to ctrl
+# - shell: ioreg -n IOHIDKeyboard -r | grep -e VendorID\" -e ProductID | ruby -e 'print ARGF.read.scan(/\d+/).join(?-)'
+#   register: keyboard_id
+# - osx_defaults:
+#     key: com.apple.keyboard.modifiermapping.{{ keyboard_id.stdout }}-0
+#     type: array
+#     array_add: true
+#     value: [ '<dict> <key>HIDKeyboardModifierMappingDst</key> <integer>2</integer> <key>HIDKeyboardModifierMappingSrc</key> <integer>0</integer> </dict>' ]
+
+- name: Avoid creating .DS_Store files on network volumes
+  osx_defaults: domain=com.apple.desktopservices key=DSDontWriteNetworkStores type=bool value=true
+- name: Show the ~/Library folder
+  command: chflags nohidden ~/Library
+
+## Finder
+- name: show all filename extensions
+  osx_defaults: key=AppleShowAllExtensions type=bool value=true
+- name: Disable the warning when changing a file extension
+  osx_defaults: domain=com.apple.finder key=FXEnableExtensionChangeWarning type=bool value=false
+- name: Use list view in all Finder windows by default
+  # Four-letter codes for view modes: `icnv`, `clmv`, `Flwv`, `Nlsv`
+  osx_defaults: domain=com.apple.finder key=FXPreferredViewStyle value=Nlsv
+- name: Empty Trash securely by default
+  osx_defaults: domain=com.apple.finder key=EmptyTrashSecurely type=bool value=true
+
+## Dock
+- name: Automatically hide and show
+  osx_defaults: domain=com.apple.dock key=autohide type=bool value=true
+# Hot corners
+# Possible values:
+# 0: no-op
+# 2: Mission Control
+# 3: Show application windows
+# 4: Desktop
+# 5: Start screen saver
+# 6: Disable screen saver
+# 7: Dashboard
+# 10: Put display to sleep
+# 11: Launchpad
+# 12: Notification Center
+- name: Bottom left screen corner → Start screen saver
+  osx_defaults: domain=com.apple.dock key=wvous-br-corner type=int value=5
+- name: Bottom left screen corner → Start screen saver
+  osx_defaults: domain=com.apple.dock key=wvous-br-modifier type=int value=0
+
+## Screensaver
+- name: Require password immediately after sleep or screen saver begins
+  osx_defaults: domain=com.apple.screensaver key=askForPassword type=int value=1
+- name: Require password immediately after sleep or screen saver begins
+  osx_defaults: domain=com.apple.screensaver key=askForPasswordDelay type=int value=0
+
+## Safari
+- name: Enable debug menu
+  osx_defaults: domain=com.apple.Safari key=IncludeInternalDebugMenu type=bool value=true
+# TODO: set default search engine to ddg
+
+## Mail.app
+- name: Add the keyboard shortcut ⌘ + Enter to send an email
+  # TODO: support this in osx_defaults
+  command: defaults write com.apple.mail NSUserKeyEquivalents -dict-add "Send" -string "@\\U21a9"
+- name: Add the keyboard shortcut ⌘ + Shift + A to archive a message
+  # TODO: support this in osx_defaults
+  command: defaults write com.apple.mail NSUserKeyEquivalents -dict-add "Archive" -string "@$a"
+
+## iTerm
+# Install the Solarized Dark theme for iTerm
+# - command: open "${HOME}/init/Solarized Dark.itermcolors"
+
+- name: Don’t display the annoying prompt when quitting iTerm
+  osx_defaults: domain=com.googlecode.iterm2 key=PromptOnQuit type=bool value=false
+#  Command = "/usr/local/bin/tmux attach";
+
+## Hammerspoon
+- osx_defaults: domain=org.hammerspoon.Hammerspoon key=SUHasLaunchedBefore type=bool value=true
+- osx_defaults: domain=org.hammerspoon.Hammerspoon key=MJShowDockIconKey type=bool value=false

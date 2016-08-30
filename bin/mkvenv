@@ -1,0 +1,19 @@
+#!/bin/sh
+# mkvirtualenv - make a relocatable virtualenv from a requirements file
+
+VIRTUALENV_PATH=.virtualenv
+REQUIREMENTS_PATH=requirements.txt
+
+# create virtualenv
+virtualenv ${VIRTUALENV_PATH}
+# activate the virtualenv
+. ${VIRTUALENV_PATH}/bin/activate
+# run virtualenv's pip but bypass its interpreter line
+python ${VIRTUALENV_PATH}/bin/pip install --upgrade pip
+python ${VIRTUALENV_PATH}/bin/pip install -r ${REQUIREMENTS_PATH}
+# strip incorrect quotes from interpreter lines
+find ${VIRTUALENV_PATH}/bin |
+xargs grep -l '\#!.*python' |
+xargs -L1 sed -i '' '1s/"//g'
+# fix interpreter lines in all virtualenv scripts
+virtualenv --relocatable ${VIRTUALENV_PATH}

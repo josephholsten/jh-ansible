@@ -1,0 +1,73 @@
+---
+- homebrew: name={{ item }}
+  with_items:
+  # improved x
+  - keybase
+  - nmap
+  # - mobile-shell # ssh
+  # - par # fmt
+  # - multitail
+  # niceties
+  # - tmux # term muxer
+  # - md5sha1sum
+  # - reattach-to-user-namespace # hack to make tmux play with mac
+  # networking
+  # - dsh
+  # - ipcalc
+  # mail
+  # - notmuch
+  # security
+  # - fortune
+  # - gnu-typist # typing lessons
+  # - imagemagick # image manip
+  # - ledger # accounting
+  # - nethack # the game
+  # - remind # calendaring
+  # self-stalking
+  - imagesnap # laptop camera cli
+  # - nolo # meter -> sink adopters
+  # - sleepwatcher # actions on wakeup
+  # - selfspy
+  # - andrewning / sortphotos
+  # - nwinter/telepath-logger
+  # botrus dev
+  # - bsdiff # binary diff
+  # - perceptualdiff # image cmp
+  # - xdelta # binary diff
+  # - tag # osx file tag manip
+  # - influxdb # timeseriesdb
+  ### Just playing with these things
+  - scamper # like mtr
+  - shellcheck # shell linter
+  - miller
+  - commonmark
+  - slackcat
+
+- homebrew_cask: name={{ item }}
+  with_items:
+  # base
+  # - adium # instant messaging
+  # - cyberduck # foss sftp
+  # - flux
+  # - keepassx # foss password safe
+  # - transmit # sftp
+  # - transmission # bittorent
+  # - panic-unison # usenet
+  # - torbrowser # tor + web browser
+  # - calibre # ebook mgmt
+  # - papers # biblio mgmt
+  # - bitcoin-core # money access
+  # - electric-sheep # the screensaver
+  # - geektool # desktop viz
+  # - daisydisk # fs usage viz
+  # - musicbrainz-picard # music tagging
+  # - tuneup # music tagging
+  - steam # gaming
+
+# - gem: name={{ item }}
+#   with_items:
+
+# - pip: name={{ item }}
+#   with_items:
+
+# - go_get: name=github.com/xordataexchange/crypt/bin/crypt

@@ -1,0 +1,78 @@
+---
+- homebrew: name={{ item }}
+  with_items:
+  - ctags                # osx ships with bsd, use exhuberant
+  - fswatch              # file change events
+  - fzf                  # fuzzy finder
+  - ghq                  # manage many repos
+  - git                  # osx ships with 2.3.2, which is ancient
+  - hig                  # rcs wrappers
+  - hub                  # github backend tooling for hig
+  - jq                   # json maniplation
+  - mackup               # dotfile management
+  - mtr                  # improved traceroute
+  - nixpp                # improvements
+  - parallel             # improved xargs
+  - pass                 # password store
+  - path-extractor       # path extractor
+  - ssh-copy-id          # osx ssh is missing it
+  - the_silver_searcher  # improved grep
+  - z                    # improved cd
+  - xz                   # improved compress/gzip
+  - watch                # improved while true do; done;
+  - coreutils            # gnu tooling, almost entirely for realpath
+  # - exiftool             # image metadata tool
+  # - jo                   # json output
+  # - oath-toolkit         # otp generator
+  # - speedread
+  # - terminal-notifier    # osx notification cli
+  # - task                 # taskwarrior
+  # - remind # reminders
+  # - ledger # accounting
+  # sync tools
+  # - khal         # vcal client
+  # - khard        # vcard client
+  # - lynx         # html to text
+  # - mutt         # mail client
+  # - offline-imap # mail sync
+  # - urlview      # extract urls from emails
+  # - vdirsyncer   # card/cal sync
+  # completions
+  - bash-completion
+  - brew-cask-completion
+  - bundler-completion
+  - gem-completion
+  - kitchen-completion
+  - open-completion
+  - packer-completion
+  - pip-completion
+  - vagrant-completion
+  - rails-completion
+  - rake-completion
+
+- homebrew_cask: name={{ item }}
+  with_items:
+  - 1password   # password safe
+  - gpgtools    # mail.app + gpg encryption
+  - hammerspoon # window manager
+  - firefox     # improved browser
+  - flux        # easy on the eyes
+  - iterm2      # terminal
+  # - arq         # backups
+  # - gemini      # dedupe
+  # - osxfuse     # virtual filesystems
+  # - quicksilver # launcher
+  # - torbrowser  # anon browser
+
+# - gem: name={{ item }}
+#   with_items:
+#   - maid # file processing
+
+# - npm: name={{ item }} global=yes
+#   with_items:
+#   - wunderline # wunderlist cli
+
+- pip: name={{ item }} executable=/usr/local/bin/pip3.5
+  with_items:
+  - habitica # habitica cli
+#   - urlscan  # extract urls from emails

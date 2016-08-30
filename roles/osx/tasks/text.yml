@@ -1,0 +1,37 @@
+# text
+- homebrew: name={{ item }}
+  with_items:
+  # editors
+  - neovim/neovim/neovim # improved vi
+  - editorconfig
+  - vim # osx ships with 7.3
+  # - mg
+  # - emacs
+# - homebrew_cask: name={{ item }}
+#   with_items:
+  # - vimr
+  # - macvim
+  # - emacs
+  # - sublime-text
+  # - nvalt
+  # - notational-velocity
+  # - textmate
+  # - bbedit
+  # - omnigraffle
+
+
+# - homebrew: name=diction
+# - homebrew: name=titlecase
+# - command: creates=/usr/local/Cellar/titlecase/HEAD brew install --HEAD homebrew/head-only/titlecase
+# - homebrew_cask: name=skim
+# - homebrew_cask: name=tofu
+# - homebrew: name=prince
+
+# md
+- homebrew: name={{ item }}
+  with_items:
+  - pandoc
+- homebrew_cask: name={{ item }}
+  with_items:
+  - marked
+  - qlmarkdown

@@ -1,0 +1,119 @@
+---
+# dev
+- homebrew: name={{ item }}
+  with_items:
+  # dev:common
+  - libffi
+  - namebench
+  # dev:ruby
+  - chruby
+  - ruby-install
+  # dev:rcs
+  # - bazaar
+  # - cvs
+  # - darcs
+  # - mercurial
+  # - rcs
+  # dev:plan9
+  # - freetype
+  # dev:config-mgmt
+  # - ansible
+  # - cfengine
+  # - packer
+  # - juju
+  # - puppet
+  # - saltstack
+  # dev:sh
+  # - bats
+  # - dash
+  # dev:c
+  # - clib
+  # - cscope
+  # - ctags
+  # - splint
+  # dev:ruby
+  # dev:scheme
+  # - mit-scheme # FIXME
+  # dev:haskell
+  # - ghc
+  # - cabal-install
+  # dev:erlang
+  # - erlang
+  # dev:lua
+  # - lua
+  # - luajit
+  # - luarocks
+
+- homebrew_cask: name={{ item }}
+  with_items:
+  # dev:vm
+  - vagrant
+  - virtualbox
+  - docker
+  # - heroku-toolbelt
+  # dev:html
+  # - google-chrome
+  # dev:plan9
+  # - osxfuse
+  # dev:config-mgmt
+  # - chefdk
+  # dev:julia
+  # - julia
+  # dev:mysql
+  # - sequel-pro
+  # dev:graphviz
+  # - graphviz
+
+
+
+# dev:plan9
+# - git: repo=https://github.com/9fans/plan9port dest=/opt/plan9
+
+# dev:ruby
+- command: creates=/opt/rubies/{{item}}  ruby-install {{item}}
+  become: true
+  become_user: root
+  with_items:
+  - ruby-2.1.3
+  - ruby-2.3.0
+
+# dev:node
+#- npm: executable={{npm_path}} global=yes name={{item}}
+#  with_items:
+#  - jshint
+#  - js-yaml
+#  - jsonlint
+#  - handlebars
+#  - coffee
+#  - coffeelint
+#  - csslint
+
+# dev:go
+# go_get: name=golang.org/x/tools/cmd/eg
+# go_get: name=golang.org/x/tools/cmd/godoc
+# go_get: name=golang.org/x/tools/cmd/goimports
+# go_get: name=golang.org/x/tools/cmd/gorename
+# go_get: name=golang.org/x/tools/cmd/oracle
+# go_get: name=golang.org/x/tools/cmd/vet
+# go_get: name=golang.org/x/review/git-review
+# go_get: name=github.com/golang/lint/golint
+#
+# go_get: name=github.com/jstemmer/gotags
+# go_get: name=github.com/kisielk/errcheck
+# go_get: name=github.com/nsf/gocode
+# go_get: name=code.google.com/p/rog-go/exp/cmd/godef
+# go_get: name=github.com/mitchellh/gox
+#
+#
+# good stuff:
+# - code.google.com/p/rsc
+# - code.google.com/p/rog-go
+#
+# go_get: name=code.google.com/p/rsc/arq/arqfs
+# golint
+# gox
+# nolo-json
+# terraform
+
+# dev:haskell
+#- command: cabal update

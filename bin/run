@@ -1,0 +1,12 @@
+#!/bin/sh
+if [ -n "$DEBUG" ]; then
+	set -x
+fi
+if ! $(which ansible > /dev/null); then
+	PATH=".virtualenv/bin:$PATH"
+fi
+WORKDIR=/tmp/ansible
+rm -rf ${WORKDIR}
+cp -r . ${WORKDIR}
+cd ${WORKDIR}
+exec ansible-playbook -i inventory/hosts site.yml "$@"

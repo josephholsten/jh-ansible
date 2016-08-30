@@ -1,0 +1,9 @@
+---
+- homebrew_cask: name=dropbox
+
+# link shared storage into home
+- file: state=link name="{{ansible_env.HOME}}/.bin"      src="{{share_dir}}/bin"
+- file: state=link name="{{ansible_env.HOME}}/Documents" src="{{share_dir}}/Documents" force=yes
+- file: state=link name="{{ansible_env.HOME}}/Pictures"  src="{{share_dir}}/Pictures"
+- file: state=link name="{{ansible_env.HOME}}/src"       src="{{share_dir}}/src"
+- file: state=link name="{{ansible_env.HOME}}/.dotfiles" src="{{share_dir}}/src/github.com/josephholsten/dotfiles"

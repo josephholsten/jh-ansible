@@ -1,0 +1,10 @@
+---
+- include: _pkg.yml
+- include: _shared_storage.yml
+- include: _osx_defaults.yml
+
+- include: base.yml
+- include: dev.yml
+- include: text.yml
+- include: ens.yml
+- include: personal.yml
