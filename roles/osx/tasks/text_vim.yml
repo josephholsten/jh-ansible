@@ -1,0 +1,40 @@
+---
+# Vim: osx ships with 7.3
+- name: vim
+  homebrew:
+    name: vim
+
+# MacVim: ObjUI to Vim
+# - name: MacVim
+#   homebrew_cask:
+#     name: macvim
+
+# NeoVim: improved vi
+- name: neovim tap
+  homebrew_tap:
+    name: neovim/neovim
+- name: neovim
+  homebrew:
+    name: neovim/neovim/neovim
+
+# VimR: Swift UI to NeoVim
+# - name: vimr
+#   homebrew_cask:
+#     name: vimr
+
+# NyaoVim: Electron UI for NeoVim
+#- npm: executable={{npm_path}} global=yes name={{item}}
+#  with_items:
+#  - nyaovim
+
+# NeoVim.app: ObjC UI to NeoVim
+# - name: neovim.app tap
+#   homebrew_tap:
+#     name: rogual/neovim-dot-app
+# - name: neovim.app
+#   homebrew:
+#     name: rogual/neovim-dot-app/neovim-dot-app
+
+# Plugins: update
+- name: nvim:plugins:update
+  command: nvim -c PlugUpdate -c quit -c quit

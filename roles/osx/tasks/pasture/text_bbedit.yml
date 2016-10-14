@@ -1,0 +1,4 @@
+---
+- name: bbedit
+  homebrew_cask:
+    name: bbedit

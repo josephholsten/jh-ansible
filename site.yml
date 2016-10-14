@@ -3,5 +3,7 @@
   remote_user: josephholsten
   roles:
     - osx
+    # - firefox
+    - hammerspoon
   vars:
     share_dir: "{{ansible_env.HOME}}/Dropbox"

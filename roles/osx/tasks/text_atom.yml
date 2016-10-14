@@ -1,0 +1,6 @@
+---
+- name: atom
+  homebrew_cask:
+    name: atom
+
+

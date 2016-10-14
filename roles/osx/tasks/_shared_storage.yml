@@ -1,9 +1,19 @@
 ---
-- homebrew_cask: name=dropbox
+# ensure default dirs are removed
+- stat: path="{{ansible_env.HOME}}/Documents"
+  register: dox
+- file: state=absent name="{{ansible_env.HOME}}/Documents"
+  when: dox.stat.isdir
+  become: root
+- stat: path="{{ansible_env.HOME}}/Pictures"
+  register: pix
+- file: state=absent name="{{ansible_env.HOME}}/Pictures"
+  when: pix.stat.isdir
+  become: root
 
 # link shared storage into home
-- file: state=link name="{{ansible_env.HOME}}/.bin"      src="{{share_dir}}/bin"
 - file: state=link name="{{ansible_env.HOME}}/Documents" src="{{share_dir}}/Documents" force=yes
 - file: state=link name="{{ansible_env.HOME}}/Pictures"  src="{{share_dir}}/Pictures"
 - file: state=link name="{{ansible_env.HOME}}/src"       src="{{share_dir}}/src"
-- file: state=link name="{{ansible_env.HOME}}/.dotfiles" src="{{share_dir}}/src/github.com/josephholsten/dotfiles"
+- file: state=link name="{{ansible_env.HOME}}/.bin"      src="{{share_dir}}/src/github.com/josephholsten/bin"
+- file: state=link name="{{ansible_env.HOME}}/.dotfiles" src="{{share_dir}}/src/gitlab.com/josephholsten/dotfiles"

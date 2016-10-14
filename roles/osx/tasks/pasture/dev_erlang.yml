@@ -1,0 +1,6 @@
+---
+- name: dev:erlang
+  homebrew:
+    name: "{{item}}"
+  with_items:
+  - erlang

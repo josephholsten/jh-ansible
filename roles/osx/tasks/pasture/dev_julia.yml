@@ -1,0 +1,6 @@
+---
+- name: dev:julia
+  homebrew_cask:
+    name: "{{item}}"
+  with_items:
+  - julia

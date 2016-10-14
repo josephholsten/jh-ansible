@@ -4,7 +4,19 @@
 - include: _osx_defaults.yml
 
 - include: base.yml
-- include: dev.yml
-- include: text.yml
+- include: nixpp.yml
+- include: hig.yml
+
 - include: ens.yml
 - include: personal.yml
+
+- include: dev.yml
+- include: dev_c.yml
+- include: dev_chef.yml
+- include: dev_go.yml
+- include: dev_ruby.yml
+
+- include: text.yml
+- include: text_atom.yml
+- include: text_emacs.yml
+- include: text_vim.yml

@@ -1,0 +1,60 @@
+#!/bin/sh
+# bootstrap - install python and ansible dependencies
+set -e
+
+VIRTUALENV_PATH=.virtualenv
+PIP_REQUIREMENTS_PATH=requirements.txt
+GALAXY_REQUIREMENTS_PATH=requirements.yml
+
+red="\E[31m"
+green="\E[32m"
+yellow="\E[33m"
+reset="\E[0m"
+
+log() {
+    printf "$@" >&2
+}
+
+logln() {
+    log "$*\n"
+}
+
+fail() {
+    log "$@"
+    exit 1
+}
+
+
+if ! command -v pip >/dev/null 2>&1; then
+    fail "${red}I need \`pip\`, but I can't find it. You may be able to install it with:${reset}\n    sudo -H easy_install pip\n"
+fi
+
+if ! command -v virtualenv >/dev/null 2>&1; then
+    fail "${red}I need \`virtualenv\`, but I can't find it. You may be able to install it with:${reset}\n    sudo -H pip install virtualenv\n"
+fi
+
+logln "Ensuring virtualenv is present"
+virtualenv ${VIRTUALENV_PATH}
+logln "Activating virtualenv"
+. ${VIRTUALENV_PATH}/bin/activate
+
+logln "Ensuring pip is up-to-date"
+pip install pip --upgrade
+# python ${VIRTUALENV_PATH}/bin/pip install --upgrade
+
+logln "Ensuring all python pip requirements are up-to-date"
+pip install -r ${PIP_REQUIREMENTS_PATH} --upgrade
+# python ${VIRTUALENV_PATH}/bin/pip install -r ${PIP_REQUIREMENTS_PATH} --upgrade
+
+logln "Ensuring all ansible role requirements are up-to-date"
+# We have to use --force because otherwise galaxy won't overwrite any existing roles
+mkdir -p vendor
+ansible-galaxy install -r ${GALAXY_REQUIREMENTS_PATH} --force
+
+logln "#######################################"
+logln "## ${green}Holstech Ansible is ready to go!${reset} ##"
+logln  "#######################################"
+logln "${green}Enable your virtualenv with:${reset}"
+logln "   source ${VIRTUALENV_PATH}/bin/activate"
+logln "${green}Then you can deploy with:${reset}"
+logln "   bin/run"

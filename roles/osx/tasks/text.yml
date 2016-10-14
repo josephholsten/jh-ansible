@@ -1,37 +1,32 @@
-# text
-- homebrew: name={{ item }}
+---
+- name: text:common
+  homebrew:
+    name: "{{item}}"
   with_items:
-  # editors
-  - neovim/neovim/neovim # improved vi
   - editorconfig
-  - vim # osx ships with 7.3
-  # - mg
-  # - emacs
-# - homebrew_cask: name={{ item }}
+  # - diction
+  # - titlecase
+  # - prince
+
+# - name: text:editors:specialized
+#   homebrew_cask:
+#     name: "{{item}}"
 #   with_items:
-  # - vimr
-  # - macvim
-  # - emacs
-  # - sublime-text
-  # - nvalt
-  # - notational-velocity
-  # - textmate
-  # - bbedit
-  # - omnigraffle
+#   - nvalt
+#   - notational-velocity
+#   - omnigraffle
+#   - skim
+#   - tofu
 
+- name: text:md
+  homebrew:
+    name: pandoc
 
-# - homebrew: name=diction
-# - homebrew: name=titlecase
-# - command: creates=/usr/local/Cellar/titlecase/HEAD brew install --HEAD homebrew/head-only/titlecase
-# - homebrew_cask: name=skim
-# - homebrew_cask: name=tofu
-# - homebrew: name=prince
-
-# md
-- homebrew: name={{ item }}
-  with_items:
-  - pandoc
-- homebrew_cask: name={{ item }}
+- name: text:md
+  homebrew_cask:
+    name: "{{item}}"
   with_items:
   - marked
   - qlmarkdown
+
+# - command: creates=/usr/local/Cellar/titlecase/HEAD brew install --HEAD homebrew/head-only/titlecase

@@ -1,0 +1,34 @@
+---
+# hig: unified ui to many rcs
+- name: hig
+  homebrew:
+    name: hig
+
+# all rcs supported by hig
+- name: hig:rcs
+  homebrew:
+    name: "{{item}}"
+  with_items:
+  - bazaar
+  - cvs
+  - darcs
+  - git # osx ships with 2.3.2, which is ancient
+  - mercurial
+  - rcs
+
+# hub: github backend tooling
+- name: hub
+  homebrew:
+    name: hub
+
+# bb: bitbucket backend tooling
+- name: bitbucket-cli
+  pip:
+    name: bitbucket-cli
+    executable: /usr/local/bin/pip2.7
+    # executable: /usr/local/bin/pip3.5
+
+# ghq: manage many repos
+- name: ghq
+  homebrew:
+    name: ghq

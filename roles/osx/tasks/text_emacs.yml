@@ -1,0 +1,11 @@
+---
+- name: emacs
+  homebrew:
+    name: "{{item}}"
+  with_items:
+  - mg
+  - emacs
+
+- name: emacs
+  homebrew_cask:
+    name: emacs

@@ -1,0 +1,12 @@
+---
+# dev:node
+#- npm: executable={{npm_path}} global=yes name={{item}}
+#  with_items:
+#  - jshint
+#  - js-yaml
+#  - jsonlint
+#  - handlebars
+#  - coffee
+#  - coffeelint
+#  - csslint
+

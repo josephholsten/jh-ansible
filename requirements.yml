@@ -1,0 +1,14 @@
+# WARNING: WARNING: WARNING:
+# Dependencies MUST be installed before roles that depend on them.
+# Otherwise Galaxy will try to find the dependency on galaxy.ansible.com and fail.
+
+# Third-party Galaxy roles
+
+- src: geerlingguy.homebrew
+  name: homebrew
+  path: vendor
+
+- src: https://github.com/josephholsten/ansible-role-firefox
+  version: darwin
+  name: firefox
+  path: vendor

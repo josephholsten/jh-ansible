@@ -1,25 +1,5 @@
 ---
-- name: install homebrew
-  shell: creates=/usr/local/.git echo | ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-
-# pkg mgmt
-- homebrew_tap: name=homebrew/completions
-- homebrew_tap: name=caskroom/cask
-- homebrew_tap: name=josephholsten/josephholsten
-
 # Update everything
 - homebrew: upgrade_all=yes
 - name: softwareupdate
   shell: softwareupdate --install --recommended
-- homebrew: name={{ item }}
-  with_items:
-  - node    # required for npm
-  - python3 # required for pip3
-  - python  # osx ships with 2.7.6, which is insecure
-  - go      # required for go get
-
-# - homebrew_tap: name=homebrew/games
-# - homebrew_tap: name=homebrew/binary
-# - homebrew_tap: name=distoteq/homebrew-distoteq
-# - homebrew: update_homebrew=yes
-# - homebrew: name=brew-cask

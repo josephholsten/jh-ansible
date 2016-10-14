@@ -1,0 +1,8 @@
+---
+- name: dev:lua
+  homebrew:
+    name: "{{item}}"
+  with_items:
+  - lua
+  - luajit
+  - luarocks

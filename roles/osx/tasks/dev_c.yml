@@ -1,0 +1,9 @@
+---
+- name: dev:c
+  homebrew:
+    name: "{{item}}"
+  with_items:
+  - clib
+  - cscope
+  - ctags
+  - splint
