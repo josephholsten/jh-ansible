@@ -22,12 +22,12 @@
 #  become: root
 
 # link shared storage into home
-- name: "file:ln: ~/Documents"
-  file:
-    state: link
-    name: "{{ansible_env.HOME}}/Documents"
-    src: "{{share_dir}}/Documents"
-    force: yes
+# - name: "file:ln: ~/Documents"
+#   file:
+#     state: link
+#     name: "{{ansible_env.HOME}}/Documents"
+#     src: "{{share_dir}}/Documents"
+#     force: yes
 - name: "file:ln: ~/Pictures"
   file:
     state: link
