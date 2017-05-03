@@ -3,7 +3,25 @@
   remote_user: josephholsten
   roles:
     - osx
-    # - firefox
+    - firefox
+    # firefox plugins
+    # - stylish
+
+    # Based on these security recomentations:
+    # https://vikingvpn.com/cybersecurity-wiki/browser-security/guide-hardening-mozilla-firefox-for-privacy-and-security
+    # https://prism-break.org/en/subcategories/macos-web-browser-addons/
+    # - disconnect
+    # - https everywhere
+    # - lightbeam
+    # - noscript
+    # - privacy badger
+    # - ublock origin
+
+    # Not really
+    # - mailvelope
+    # - better privacy
+    # - cookie controller
+    # - ghostery
     - hammerspoon
   vars:
     share_dir: "{{ansible_env.HOME}}/Dropbox"

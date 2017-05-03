@@ -1,15 +1,17 @@
 ---
 # basic items not installed via homebrew (which is in the meta file)
+#
+# TODO: install all the homebrew bits via package?
 
-- name: agshoes dependencies
-  homebrew:
-    name: "{{item}}"
-  with_items:
-  - coreutils    # gnu tooling, almost entirely for realpath
-  - mackup       # dotfile management
-  - offline-imap # mail sync
-  - vdirsyncer   # card/cal sync
-  - xz           # improved compress/gzip
+# - name: agshoes dependencies
+#   homebrew:
+#     name: "{{item}}"
+#   with_items:
+#   - coreutils    # gnu tooling, almost entirely for realpath
+#   - mackup       # dotfile management
+#   - offline-imap # mail sync
+#   - vdirsyncer   # card/cal sync
+#   - xz           # improved compress/gzip
 
 - name: base tools
   homebrew:
@@ -20,6 +22,7 @@
   - fswatch              # file change events
   - fzf                  # fuzzy finder
   - jq                   # json maniplation
+  - mas                  # mac app store
   - pass                 # password store
   - path-extractor       # path extractor
   - ssh-copy-id          # osx ssh is missing it

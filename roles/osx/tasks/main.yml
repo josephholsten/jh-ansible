@@ -7,7 +7,6 @@
 - include: nixpp.yml
 - include: hig.yml
 
-- include: ens.yml
 - include: personal.yml
 
 - include: dev.yml

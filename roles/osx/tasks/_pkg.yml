@@ -1,5 +1,6 @@
 ---
 # Update everything
-- homebrew: upgrade_all=yes
+- name: homebrew:upgrade
+  homebrew: upgrade_all=yes
 - name: softwareupdate
   shell: softwareupdate --install --recommended
