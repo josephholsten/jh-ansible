@@ -28,11 +28,11 @@
 #     name: "{{ansible_env.HOME}}/Documents"
 #     src: "{{share_dir}}/Documents"
 #     force: yes
-- name: "file:ln: ~/Pictures"
-  file:
-    state: link
-    name: "{{ansible_env.HOME}}/Pictures"
-    src: "{{share_dir}}/Pictures"
+# - name: "file:ln: ~/Pictures"
+#   file:
+#     state: link
+#     name: "{{ansible_env.HOME}}/Pictures"
+#     src: "{{share_dir}}/Pictures"
 - name: "file:ln: ~/src"
   file:
     state: link
