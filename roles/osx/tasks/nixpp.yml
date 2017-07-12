@@ -1,5 +1,0 @@
----
-# improvements with posix fallbacks
-- name: nixpp
-  homebrew:
-    name:  nixpp

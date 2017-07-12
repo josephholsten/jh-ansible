@@ -1,8 +1,0 @@
----
-- name: chefdk
-  homebrew_cask:
-    name: chefdk
-
-- name: kitchen-completion
-  homebrew:
-    name: kitchen-completion

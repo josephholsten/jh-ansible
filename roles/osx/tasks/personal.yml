@@ -128,3 +128,21 @@
 #   with_items:
 
 # - go_get: name=github.com/xordataexchange/crypt/bin/crypt
+
+# all rcs supported by hig
+- name: hig:rcs
+  homebrew:
+    name: "{{item}}"
+  with_items:
+  - bazaar
+  - cvs
+  - darcs
+  - mercurial
+  - rcs
+
+# bb: bitbucket backend tooling
+- name: bitbucket-cli
+  pip:
+    name: bitbucket-cli
+    executable: /usr/local/bin/pip2.7
+    # executable: /usr/local/bin/pip3.5
