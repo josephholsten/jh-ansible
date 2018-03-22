@@ -1,0 +1,153 @@
+---
+
+# - include: _pkg.yml
+# - include: _osx_defaults.yml
+# - include: _shared_storage.yml
+
+- name: ppa:neovim
+  apt_repository:
+    repo: 'ppa:neovim-ppa/stable'
+- name: ppa:fasd
+  apt_repository:
+    repo: 'ppa:aacebedo/fasd'
+
+- name: base tools
+  apt:
+    name: "{{item}}"
+  with_items:
+  # package systems
+  - python3
+  # - go
+  # updated
+  - bash  # osx default is 3.2.57
+  - ctags # osx default is bsd
+  - git   # osx ships with 2.3.2, which is ancient
+  # improved
+  - coreutils            # gnu tooling, almost entirely for realpath
+  - fasd                 # improved cd(1)
+  # - ripgrep              # improved grep(1)
+  #   https://github.com/BurntSushi/ripgrep/releases/download/0.7.1/ripgrep-0.7.1-x86_64-unknown-linux-musl.tar.gz
+  - openssh-client       # ssh-copy-id(1) missing from osx
+  - silversearcher-ag    # improved grep(1)
+  - watch                # improved while true do; ... done
+  - xz-utils             # improved compress/gzip
+  - editorconfig         # improved modeline
+  # events
+  # - fswatch      # file change events
+  # - sleepwatcher # wakeup events
+  # stores
+  # - mackup       # dotfile store
+  - pass         # password store
+  # - ghq          # rcs store
+  #   https://github.com/motemen/ghq/releases/download/v0.8.0/ghq_linux_amd64.zip
+  - offlineimap  # mail store sync
+  # - vdirsyncer   # card/cal store sync
+  # api
+  - exiftool       # image metadata cli
+  # - hub            # github cli
+  # - imagesnap      # laptop camera cli # FIXME: broken on osx 10.12
+  - jq             # json maniplation cli
+  - pandoc         # text document convertion
+  - lynx           # html to text
+  # - path-extractor # path extractor
+  # ui
+  # - hig              # multi-rcs ui
+  # - nixpp            # shorthands posix fallbacks
+  - bash-completion  # shell completions
+  # - fzf              # fuzzy item select
+  # - peco             # fuzzy item select
+  - mutt             # maildir ui
+  # - khal             # vcal ui
+  # - khard            # vcard ui
+  - neovim           # text editor
+  # dev
+  - shellcheck # sh linter
+  # - golint
+  # - gofmt
+  # - godef
+  # - goimports
+  # - gotags
+  # - guru
+  # - clib
+  # - cscope
+  # - ctags
+  # - splint
+  # - dash       # posix sh
+  # - dsh # dancer's shell
+  # - jo                   # json output
+  # - ledger               # accounting store
+  # - remind               # reminder store
+  # - oath-toolkit         # otp generator
+  # - speedread
+  # - task                 # taskwarrior
+  # - urlview              # extract urls from emails
+  # - socat
+
+# - name: base
+#   homebrew_cask:
+#     name: "{{item}}"
+#   with_items:
+#   # stores
+#   - dropbox   # file store sync
+#   - 1password # password store
+#   - mylio     # photo store
+#   - keybase   # secure file store
+#   # - workflowy # outlining / external brain TODO: create cask
+#   # ui
+#   - hammerspoon # window manip ui
+#   - franz       # chat ui
+#   - firefox     # browser
+#   - gpgtools    # encryption ui
+#   # - torbrowser # anonymous browser
+#   # misc
+#   - gemini # deduplication
+#   - keepingyouawake # prevent sleep events
+#   # - marked
+#   # - qlmarkdown
+#   # - docker
+#   # - graphviz
+#   # - google-chrome
+#   # - arq
+#   # - flux
+#   # - quicksilver  # launcher
+# 
+# - pip:
+#     name: urlscan
+#     executable: /usr/local/bin/pip3.5
+# 
+# 
+# - name: dev:chef
+#   homebrew_cask:
+#     name: chefdk
+# 
+
+
+
+
+# 
+# - name: neovim tap
+#   homebrew_tap:
+#     name: neovim/neovim
+# - name: neovim
+#   homebrew:
+#     name: neovim/neovim/neovim
+# 
+# - name: nvim:plugins:update
+#   command: nvim -c PlugUpdate -c quit -c quit
+# 
+# 
+# # launcher {
+# # - flashlight https://github.com/w0lfschild/Flashlight
+# # - cerebro
+# # - dext https://github.com/vutran/dext
+# # - quicksilver
+# # - zazu
+# # }
+#
+- name: ltm tools
+  apt:
+    name: "{{item}}"
+  with_items:
+  # package systems
+  - docker-compose
+

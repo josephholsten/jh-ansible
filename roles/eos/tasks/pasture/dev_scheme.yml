@@ -1,0 +1,7 @@
+---
+- name: dev:scheme
+  homebrew:
+    name: "{{item}}"
+  with_items:
+  - mit-scheme # FIXME
+

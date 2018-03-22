@@ -1,0 +1,13 @@
+---
+# dev
+
+- name: dev:haskell
+  homebrew:
+    name: "{{item}}"
+  with_items:
+  - ghc
+  - cabal-install
+ 
+# dev:haskell
+#- command: cabal update
+

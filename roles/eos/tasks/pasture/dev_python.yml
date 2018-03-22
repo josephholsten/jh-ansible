@@ -1,0 +1,6 @@
+---
+- name: dev:py
+  homebrew:
+    name: "{{item}}"
+  with_items:
+  - pip-completion

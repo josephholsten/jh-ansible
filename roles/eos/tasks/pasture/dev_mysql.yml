@@ -1,0 +1,6 @@
+---
+- name: dev:mysql
+  homebrew_cask:
+    name: "{{item}}"
+  with_items:
+  - sequel-pro

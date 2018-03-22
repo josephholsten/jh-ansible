@@ -1,0 +1,148 @@
+---
+
+- name: personal
+  homebrew:
+    name: "{{item}}"
+  with_items:
+  # improved x
+
+  # improved grep -r {
+  # - ack
+  - the_silver_searcher # ack -> c
+  # - the_platinum_searcher # ack -> go
+  - ripgrep # ack -> rust
+  # }
+
+  # - mobile-shell # ssh
+  # - par # fmt
+  # - multitail
+
+  # niceties
+  # - tmux # term muxer
+  # - md5sha1sum
+  # - reattach-to-user-namespace # hack to make tmux play with mac
+
+  # networking
+  # - dsh
+  # - ipcalc
+
+  # mail
+  # - notmuch
+
+  # security
+  # - fortune
+  # - gnu-typist # typing lessons
+  # - imagemagick # image manip
+  # - ledger # accounting
+  # - nethack # the game
+  # - remind # calendaring
+
+  # self-stalking
+  - imagesnap # laptop camera cli # FIXME: broken on osx 10.12
+  - sleepwatcher # actions on wakeup
+  # - nolo # meter -> sink adopters
+  # - selfspy
+  # - andrewning / sortphotos
+  # - nwinter/telepath-logger
+
+  # botrus dev
+  # - bsdiff # binary diff
+  # - perceptualdiff # image cmp
+  # - xdelta # binary diff
+  # - tag # osx file tag manip
+  # - influxdb # timeseriesdb
+
+  # fuzzy item select (pie:leg la:lego la:seligo gmc:pikkōną gmc:keusaną gmc:plukkōną) {
+  # - helm.el (nee anything.el) # born:2007-07-22
+  # - canything # born:2010-12-12, anything.el -> c
+  # - ctrlp.vim # born:2011-06-20
+  # - percol # born:2011-02-26
+  - fzf # born:2013-10-22, ctrlp.vim -> go
+  - peco # born:2014-06-05, percol -> go
+  # }
+
+  # improved cd {
+  # - autojump # born:2008-04-21
+  # - z # born:2009-06-18, autojump -> sh
+  - fasd
+  # }
+
+  # file watching {
+  - fswatch
+  # - watchexec
+  # - watchr
+  # }
+
+  ### Just playing with these things
+  - miller
+  - commonmark
+  - slackcat
+  - rem
+  - shfmt
+  - todoman
+
+
+- name: personal
+  homebrew_cask:
+    name: "{{item}}"
+  with_items:
+  - keybase
+  - torbrowser         # tor + web browser
+  - franz              # instant messaging
+    # - workflowy          # outlining / external brain TODO: create cask
+  # - steam # gaming
+  # - daisydisk          # fs usage viz
+  # - gemini             # deduplication
+  # - adium              # instant messaging
+  # - cyberduck          # foss sftp
+  # - flux
+  # - keepassx           # foss password safe
+  # - transmit           # sftp
+  # - transmission       # bittorent
+  # - panic-unison       # usenet
+  # - calibre            # ebook mgmt
+  # - papers             # biblio mgmt
+  # - bitcoin-core       # money access
+  # - electric-sheep     # the screensaver
+  # - geektool           # desktop viz
+  # - musicbrainz-picard # music tagging
+  # - tuneup             # music tagging
+
+  # launcher {
+  # foss
+  # - flashlight https://github.com/w0lfschild/Flashlight
+  # - cerebro
+  # - dext https://github.com/vutran/dext
+  # - quicksilver
+  # - zazu
+  # proprietary
+  # - lacona https://www.lacona.io/
+  # - launchbar
+  # - alfred
+  # }
+
+# - gem: name={{ item }}
+#   with_items:
+
+# - pip: name={{ item }}
+#   with_items:
+
+# - go_get: name=github.com/xordataexchange/crypt/bin/crypt
+
+# all rcs supported by hig
+- name: hig:rcs
+  homebrew:
+    name: "{{item}}"
+  with_items:
+  - bazaar
+  - cvs
+  - darcs
+  - mercurial
+  - rcs
+
+# bb: bitbucket backend tooling
+- name: bitbucket-cli
+  pip:
+    name: bitbucket-cli
+    executable: /usr/local/bin/pip2.7
+    # executable: /usr/local/bin/pip3.5

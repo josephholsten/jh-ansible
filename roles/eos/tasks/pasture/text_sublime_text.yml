@@ -1,0 +1,4 @@
+---
+- name: sublime text
+  homebrew_cask:
+    name: sublime-text
