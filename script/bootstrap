@@ -26,11 +26,11 @@ fail() {
 
 
 if ! command -v pip >/dev/null 2>&1; then
-    fail "${red}I need \`pip\`, but I can't find it. You may be able to install it with:${reset}\n    sudo -H easy_install pip\n"
+    fail "${red}I need \`pip\`, but I can't find it. You may be able to install it with:${reset}\nOn Ubuntu:\n    sudo apt install python-pip\nElsewhere:\n    sudo -H easy_install pip\n"
 fi
 
 if ! command -v virtualenv >/dev/null 2>&1; then
-    fail "${red}I need \`virtualenv\`, but I can't find it. You may be able to install it with:${reset}\n    sudo -H pip install virtualenv\n"
+    fail "${red}I need \`virtualenv\`, but I can't find it. You may be able to install it with:${reset}\nOn Debian:\n    sudo apt install virtualenv\nElsewhere:\n    sudo -H pip install virtualenv\n"
 fi
 
 logln "Ensuring virtualenv is present"
