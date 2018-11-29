@@ -1,17 +1,32 @@
 ---
 
+# - name: neovim tap
+#   homebrew_tap:
+#     name: homebrew/completions
+#   with_items:
+#   - homebrew/completions
+#   - caskroom/cask
+#   - caskroom/fonts
+#   - josephholsten/josephholsten
+
 - include: _pkg.yml
 - include: _osx_defaults.yml
 - include: _shared_storage.yml
+- include: safari.yml
+- include: mail.yml
+- include: dev_common.yml
+- include: dev_ruby.yml
 
 - name: base tools
   homebrew:
     name: "{{item}}"
   with_items:
-  # package systems
-  - mas    # mac app store
-  - python3
-  - go
+  # package managers
+  - node    # required for npm
+  - python3 # required for pip3
+  - python  # osx ships with 2.7.6, which is insecure
+  - go      # required for go get
+  - mas     # mac app store
   # updated
   - bash  # osx default is 3.2.57
   - ctags # osx default is bsd
@@ -29,7 +44,8 @@
   - fswatch      # file change events
   - sleepwatcher # wakeup events
   # stores
-  - mackup       # dotfile store
+  - mackup       # dotfile store (deprecated in favor of stow)
+  - stow         # dotfile store
   - pass         # password store
   - ghq          # rcs store
   - offline-imap # mail store sync
@@ -37,7 +53,7 @@
   # api
   - exiftool       # image metadata cli
   - hub            # github cli
-  - imagesnap      # laptop camera cli # FIXME: broken on osx 10.12
+  - imagesnap      # laptop camera cli
   - jq             # json maniplation cli
   - pandoc         # text document convertion
   - lynx           # html to text
@@ -74,6 +90,23 @@
   # - urlview              # extract urls from emails
   # - socat
 
+  # installed packages
+  # - htop
+  # - hugo
+  # - less
+  # - mtr
+  # - parallel
+  # - pstree
+  # - pwgen
+  # - qrencode
+  # - ruby
+  # - ruby-install
+  # - sqlite
+  # - terminal-notifier
+  # - tokei
+  # - tree
+  # - unar
+
 - name: base
   homebrew_cask:
     name: "{{item}}"
@@ -86,25 +119,73 @@
   # - workflowy # outlining / external brain TODO: create cask
   # ui
   - hammerspoon # window manip ui
-  - franz       # chat ui
   - firefox     # browser
+  # firefox plugins
+  # - stylish
+  # Based on these security recomentations:
+  # https://vikingvpn.com/cybersecurity-wiki/browser-security/guide-hardening-mozilla-firefox-for-privacy-and-security
+  # https://prism-break.org/en/subcategories/macos-web-browser-addons/
+  # - disconnect
+  # - https everywhere
+  # - lightbeam
+  # - privacy badger
+  # - ublock origin
+  # - umatrix
+  # Not really
+  # - noscript
+  # - mailvelope
+  # - better privacy
+  # - cookie controller
+  # - ghostery
   - gpgtools    # encryption ui
-  # - torbrowser # anonymous browser
+  - torbrowser # anonymous browser
+  - iterm2 # terminal
   # misc
   - gemini # deduplication
   - keepingyouawake # prevent sleep events
-  # - marked
+  - marked
+  # - caskroom/fonts/font-hasklig # ligatures # TODO: fix broken installation under ansible
   # - qlmarkdown
   # - docker
   # - graphviz
-  # - google-chrome
   # - arq
   # - flux
   # - quicksilver  # launcher
+  # - franz       # chat ui
+  # fallback
+  - atom
+  - google-chrome
+  # testing
+  - appcleaner
+  - daisydisk
+  - day-o
+  - handbrake
+  - prince
+  - sabaki
+  - skype
+  - skype
+  - zoomus
+  - battle-net
+  - discord
+  - malwarebytes
+  - slack
 
-- pip:
+
+  # apps in app store:
+  # - todoist
+
+  # Apps to manually install:
+  # - family-tree-maker
+
+- name: urlscan
+  pip:
     name: urlscan
-    executable: /usr/local/bin/pip3.5
+    executable: /usr/local/bin/pip3
+
+- name: ntfy
+  pip:
+    name: ntfy
+    executable: /usr/local/bin/pip3
 
 
 - name: dev:chef

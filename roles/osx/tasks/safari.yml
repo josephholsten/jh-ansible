@@ -1,0 +1,6 @@
+---
+- name: "Safari: Enable debug menu"
+  osx_defaults: domain=com.apple.Safari key=IncludeInternalDebugMenu type=bool value=true
+- name: "Safari: Enable “Do Not Track”"
+  osx_defaults: domain=com.apple.Safari key=SendDoNotTrackHTTPHeader type=bool value=true
+  # TODO: set default search engine to ddg

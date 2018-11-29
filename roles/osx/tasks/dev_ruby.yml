@@ -1,0 +1,11 @@
+---
+- name: dev:ruby
+  homebrew:
+    name: "{{item}}"
+  with_items:
+  # updated
+  - ruby # osx ships with 2.0.0p648, which is ancient
+
+- name: ripper-tags
+  gem:
+    name: ripper-tags

@@ -1,0 +1,56 @@
+# main.cf - base config for postfix server
+#  This file is written by config management:
+#      ANY CHANGES WILL BE OVERWRITTEN
+
+# This file only includes postfix default parameter values in
+# comments when they have been changed. All default values may be
+# looked up with `postconf -d`. Non-default settings should explain why
+# they are made, ideally including business value and ticket number.
+# This file is not the place to document what any particular option
+# does. Documentation for all parameters lives at
+#   http://www.postfix.org/postconf.5.html
+# Security is contingent on the capabilities of the relayhost. See http://www.postfix.org/TLS_README.html
+
+# compatibility_level = 0
+compatibility_level = 2
+# limit connections to local clients
+inet_interfaces = localhost
+
+# Security {
+# per https://pobox.com/helpspot/index.php?pg=kb.printer.friendly&id=18#p126
+smtp_tls_security_level = encrypt
+# smtp_sasl_auth_enable = no
+smtp_sasl_auth_enable = yes
+# smtp_sasl_security_options = noplaintext, noanonymous
+smtp_sasl_security_options = noanonymous
+# }
+
+# connection details {
+relayhost = [smtp.pobox.com]:587
+smtp_sasl_password_maps = static:josephholsten@pobox.com:ztb!7qke8htzqq
+debug_peer_list = mail.pobox.com, 127.0.0.1
+# }
+
+# installation specific {
+# groups
+mail_owner = _postfix
+setgid_group = _postdrop
+# paths
+command_directory = /usr/sbin
+daemon_directory = /usr/libexec/postfix
+data_directory = /var/lib/postfix
+html_directory = /usr/share/doc/postfix/html
+manpage_directory = /usr/share/man
+queue_directory = /private/var/spool/postfix
+readme_directory = /usr/share/doc/postfix
+sample_directory = /usr/share/doc/postfix/examples
+tls_random_source = dev:/dev/urandom
+# command paths
+mailq_path = /usr/bin/mailq
+newaliases_path = /usr/bin/newaliases
+sendmail_path = /usr/sbin/sendmail
+debugger_command =
+     PATH=/bin:/usr/bin:/usr/local/bin:/usr/X11R6/bin
+     ddd $daemon_directory/$process_name $process_id & sleep 5
+# }
+ }

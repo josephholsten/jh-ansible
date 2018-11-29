@@ -89,7 +89,8 @@
   - keybase
   - torbrowser         # tor + web browser
   - franz              # instant messaging
-    # - workflowy          # outlining / external brain TODO: create cask
+  - slack              # sous-chefs, hangops chat
+  # - workflowy          # outlining / external brain TODO: create cask
   # - steam # gaming
   # - daisydisk          # fs usage viz
   # - gemini             # deduplication

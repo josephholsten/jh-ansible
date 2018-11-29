@@ -1,0 +1,7 @@
+---
+- name: "Mail: Add the keyboard shortcut ⌘ + Enter to send an email"
+  # TODO: support this in osx_defaults
+  command: defaults write com.apple.mail NSUserKeyEquivalents -dict-add "Send" -string "@\\U21a9"
+- name: "Mail: Add the keyboard shortcut ⌘ + Shift + A to archive a message"
+  # TODO: support this in osx_defaults
+  command: defaults write com.apple.mail NSUserKeyEquivalents -dict-add "Archive" -string "@$a"

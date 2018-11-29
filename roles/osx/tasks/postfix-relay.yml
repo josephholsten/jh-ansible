@@ -1,0 +1,16 @@
+---
+- name: postfix relay password
+  template:
+    src: relay_password.j2
+    dest: /etc/file.conf
+    owner: bin
+    group: wheel
+    mode: 0644
+- name: postfix mail.cf
+  template:
+    src: mail.cf.j2
+    dest: /etc/file.conf
+    owner: bin
+    group: wheel
+    mode: 0644
+# - name: postfix service reload
