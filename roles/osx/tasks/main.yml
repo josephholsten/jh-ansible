@@ -69,43 +69,41 @@
   - khard            # vcard ui
   # dev
   - shellcheck # sh linter
-  # - golint
-  # - gofmt
-  # - godef
-  # - goimports
-  # - gotags
-  # - guru
+  #
+  # previously installed packages
   # - clib
   # - cscope
   # - ctags
-  # - splint
   # - dash       # posix sh
   # - dsh # dancer's shell
-  # - jo                   # json output
-  # - ledger               # accounting store
-  # - remind               # reminder store
-  # - oath-toolkit         # otp generator
-  # - speedread
-  # - task                 # taskwarrior
-  # - urlview              # extract urls from emails
-  # - socat
-
-  # installed packages
+  # - godef
+  # - gofmt
+  # - goimports
+  # - golint
+  # - gotags
+  # - guru
   # - htop
   # - hugo
+  # - jo                   # json output
+  # - ledger               # accounting store
   # - less
   # - mtr
+  # - oath-toolkit         # otp generator
   # - parallel
   # - pstree
   # - pwgen
   # - qrencode
+  # - remind               # reminder store
   # - ruby
   # - ruby-install
+  # - socat
+  # - speedread
+  # - splint
   # - sqlite
+  # - task                 # taskwarrior
   # - terminal-notifier
-  # - tokei
   # - tree
-  # - unar
+  # - urlview              # extract urls from emails
 
 - name: base
   homebrew_cask:
@@ -120,23 +118,6 @@
   # ui
   - hammerspoon # window manip ui
   - firefox     # browser
-  # firefox plugins
-  # - stylish
-  # Based on these security recomentations:
-  # https://vikingvpn.com/cybersecurity-wiki/browser-security/guide-hardening-mozilla-firefox-for-privacy-and-security
-  # https://prism-break.org/en/subcategories/macos-web-browser-addons/
-  # - disconnect
-  # - https everywhere
-  # - lightbeam
-  # - privacy badger
-  # - ublock origin
-  # - umatrix
-  # Not really
-  # - noscript
-  # - mailvelope
-  # - better privacy
-  # - cookie controller
-  # - ghostery
   - gpgtools    # encryption ui
   - torbrowser # anonymous browser
   - iterm2 # terminal
@@ -165,17 +146,16 @@
   - skype
   - skype
   - zoomus
-  - battle-net
+
+  - battle.net
   - discord
+  - family-tree-maker
   - malwarebytes
   - slack
-
+  - selfcontrol
 
   # apps in app store:
   # - todoist
-
-  # Apps to manually install:
-  # - family-tree-maker
 
 - name: urlscan
   pip:
