@@ -1,161 +1,52 @@
 ---
+# Update everything
+- name: homebrew:upgrade
+  homebrew: upgrade_all=yes
+- name: softwareupdate
+  shell: softwareupdate --install --recommended
 
-# - name: neovim tap
-#   homebrew_tap:
-#     name: homebrew/completions
-#   with_items:
-#   - homebrew/completions
-#   - caskroom/cask
-#   - caskroom/fonts
-#   - josephholsten/josephholsten
-
-- include: _pkg.yml
 - include: _osx_defaults.yml
 - include: _shared_storage.yml
-- include: safari.yml
-- include: mail.yml
-- include: dev_common.yml
-- include: dev_ruby.yml
 
-- name: base tools
+- name: "Safari: Enable debug menu"
+  osx_defaults: domain=com.apple.Safari key=IncludeInternalDebugMenu type=bool value=true
+- name: "Safari: Enable “Do Not Track”"
+  osx_defaults: domain=com.apple.Safari key=SendDoNotTrackHTTPHeader type=bool value=true
+  # TODO: set default search engine to ddg
+
+- name: "Mail: Add the keyboard shortcut ⌘ + Enter to send an email"
+  # TODO: support this in osx_defaults
+  command: defaults write com.apple.mail NSUserKeyEquivalents -dict-add "Send" -string "@\\U21a9"
+- name: "Mail: Add the keyboard shortcut ⌘ + Shift + A to archive a message"
+  # TODO: support this in osx_defaults
+  command: defaults write com.apple.mail NSUserKeyEquivalents -dict-add "Archive" -string "@$a"
+
+- include: dev_common.yml
+
+- name: dev:ruby
   homebrew:
     name: "{{item}}"
   with_items:
-  # package managers
-  - node    # required for npm
-  - python3 # required for pip3
-  - python  # osx ships with 2.7.6, which is insecure
-  - go      # required for go get
-  - mas     # mac app store
   # updated
-  - bash  # osx default is 3.2.57
-  - ctags # osx default is bsd
-  - git   # osx ships with 2.3.2, which is ancient
-  # improved
-  - coreutils            # gnu tooling, almost entirely for realpath
-  - fasd                 # improved cd(1)
-  - ripgrep              # improved grep(1)
-  - ssh-copy-id          # osx ssh is missing it
-  - the_silver_searcher  # improved grep(1)
-  - watch                # improved while true do; ... done
-  - xz                   # improved compress/gzip
-  - editorconfig         # improved modeline
-  # events
-  - fswatch      # file change events
-  - sleepwatcher # wakeup events
-  # stores
-  - mackup       # dotfile store (deprecated in favor of stow)
-  - stow         # dotfile store
-  - pass         # password store
-  - ghq          # rcs store
-  - offline-imap # mail store sync
-  - vdirsyncer   # card/cal store sync
-  # api
-  - exiftool       # image metadata cli
-  - hub            # github cli
-  - imagesnap      # laptop camera cli
-  - jq             # json maniplation cli
-  - pandoc         # text document convertion
-  - lynx           # html to text
-  - path-extractor # path extractor
-  # ui
-  - hig              # multi-rcs ui
-  - nixpp            # shorthands posix fallbacks
-  - bash-completion  # shell completions
-  - fzf              # fuzzy item select
-  - peco             # fuzzy item select
-  - mutt             # maildir ui
-  - khal             # vcal ui
-  - khard            # vcard ui
-  # dev
-  - shellcheck # sh linter
-  #
-  # previously installed packages
-  # - clib
-  # - cscope
-  # - ctags
-  # - dash       # posix sh
-  # - dsh # dancer's shell
-  # - godef
-  # - gofmt
-  # - goimports
-  # - golint
-  # - gotags
-  # - guru
-  # - htop
-  # - hugo
-  # - jo                   # json output
-  # - ledger               # accounting store
-  # - less
-  # - mtr
-  # - oath-toolkit         # otp generator
-  # - parallel
-  # - pstree
-  # - pwgen
-  # - qrencode
-  # - remind               # reminder store
-  # - ruby
-  # - ruby-install
-  # - socat
-  # - speedread
-  # - splint
-  # - sqlite
-  # - task                 # taskwarrior
-  # - terminal-notifier
-  # - tree
-  # - urlview              # extract urls from emails
+  - ruby # osx ships with 2.0.0p648, which is ancient
 
-- name: base
-  homebrew_cask:
-    name: "{{item}}"
-  with_items:
-  # stores
-  - dropbox   # file store sync
-  - 1password # password store
-  - mylio     # photo store
-  - keybase   # secure file store
-  # - workflowy # outlining / external brain TODO: create cask
-  # ui
-  - hammerspoon # window manip ui
-  - firefox     # browser
-  - gpgtools    # encryption ui
-  - torbrowser # anonymous browser
-  - iterm2 # terminal
-  # misc
-  - gemini # deduplication
-  - keepingyouawake # prevent sleep events
-  - marked
-  # - caskroom/fonts/font-hasklig # ligatures # TODO: fix broken installation under ansible
-  # - qlmarkdown
-  # - docker
-  # - graphviz
-  # - arq
-  # - flux
-  # - quicksilver  # launcher
-  # - franz       # chat ui
-  # fallback
-  - atom
-  - google-chrome
-  # testing
-  - appcleaner
-  - daisydisk
-  - day-o
-  - handbrake
-  - prince
-  - sabaki
-  - skype
-  - skype
-  - zoomus
+- name: ripper-tags
+  gem:
+    name: ripper-tags
 
-  - battle.net
-  - discord
-  - family-tree-maker
-  - malwarebytes
-  - slack
-  - selfcontrol
-
-  # apps in app store:
-  # - todoist
+# Config
+- name: First run
+  osx_defaults:
+    domain: org.hammerspoon.Hammerspoon
+    key: SUHasLaunchedBefore
+    type: bool
+    value: true
+- name: Disable Dock Icon
+  osx_defaults:
+    domain: org.hammerspoon.Hammerspoon
+    key: MJShowDockIconKey
+    type: bool
+    value: false
 
 - name: urlscan
   pip:
@@ -167,27 +58,15 @@
     name: ntfy
     executable: /usr/local/bin/pip3
 
-
-- name: dev:chef
-  homebrew_cask:
-    name: chefdk
-
-
-- name: neovim tap
-  homebrew_tap:
-    name: neovim/neovim
-- name: neovim
-  homebrew:
-    name: neovim/neovim/neovim
-
 - name: nvim:plugins:update
   command: nvim -c PlugUpdate -c quit -c quit
 
 
-# launcher {
-# - flashlight https://github.com/w0lfschild/Flashlight
-# - cerebro
-# - dext https://github.com/vutran/dext
-# - quicksilver
-# - zazu
-# }
+# - go_get: name=github.com/xordataexchange/crypt/bin/crypt
+
+# bb: bitbucket backend tooling
+- name: bitbucket-cli
+  pip:
+    name: bitbucket-cli
+    executable: /usr/local/bin/pip2.7
+    # executable: /usr/local/bin/pip3.5
